@@ -1,8 +1,10 @@
 from cProfile import run
+from tracemalloc import start
 import pygame
 from pygame.locals import *
 from colors import colors
 from grid import Grid
+from queue import PriorityQueue
 
 pygame.init()
 screen_width, screen_height = 750, 750   # Resolution -> 1600, 900
@@ -39,6 +41,16 @@ while run:
         if pygame.mouse.get_pressed()[1]: #left button
             position = pygame.mouse.get_pos()
             grid.grid_update(position,'barrier')
+
+        # True when the keyboard give the input
+        if event.type == KEYDOWN:
+            # key define the which input.
+            if event.key == K_KP_ENTER:
+                pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)
+                pygame.event.set_blocked(pygame.MOUSEMOTION)
+                pygame.event.set_blocked(pygame.MOUSEBUTTONUP)
+                pygame.event.set_blocked(pygame.MOUSEWHEEL)
+        
         
 
         
@@ -54,3 +66,18 @@ while run:
 
     pygame.display.update()
     pygame.time.Clock().tick(60)
+
+    def Algorithm(Grid, Start, Goal):
+        frontier  = PriorityQueue()
+        frontier.put((2,Start))
+        
+        if frontier.empty():
+            return "not found"
+        else:
+            if frontier.get()[1] == Goal:
+                return frontier.get()[1]
+            else:
+                pass
+
+
+
