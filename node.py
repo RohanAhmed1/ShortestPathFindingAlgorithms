@@ -47,8 +47,23 @@ class Node:
 
         
 
-    def neighbours(self):
-        pass
+    def has_neighbours(self,grid, rows):
+        # down
+        if self.x + 1>=0 and (self.x + 1)<rows and not (grid[self.x+1][self.y].is_barrier()):
+            self.neighbours.append([self.x+1, self.y])
+        # up
+        if self.x  -1>=0 and (self.x  -1)<rows and not (grid[self.x-1][self.y].is_barrier()):
+            self.neighbours.append([self.x-1, self.y] ) 
+        #right
+        if self.y + 1>=0 and (self.y + 1)<rows and not (grid[self.x][self.y + 1].is_barrier()):
+            self.neighbours.append([self.x, self.y+1])
+        #left
+        if self.y - 1>=0 and (self.y - 1)<rows and not (grid[self.x][self.y-1].is_barrier()):
+            self.neighbours.append([self.x, self.y-1])
+        
+
+
+
 
 
     
