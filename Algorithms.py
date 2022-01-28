@@ -12,18 +12,21 @@ class BFS:
 
         while open_set is not open_set.empty():
             item = open_set.get()
+            # item[1] is the node and item[0] is the heuristic of that node
             node = item[1]
             if node in closed_set:
                 continue
             came_from.append(item)
             if node == goal:
-                return node, came_from, open_set
+                return node, came_from
             closed_set.append(node)
-            for each in neighbours(grid, node):
+            for each in node.has_neighbours(grid):
 
                 heur = self.calc_heuristic(each, goal)
 
                 open_set.put([heur, each])
+
+        return "not found"
         
 
     def cal_heuristic(self, start, goal):
