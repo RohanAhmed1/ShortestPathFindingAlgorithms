@@ -48,8 +48,14 @@ class Grid:
 
 
 
+
+
     def gap_between(self, rows, width):
         return width // rows  # how many columns in the screen width
+
+
+    def searching_algorithms(self, algorithm, start, goal):
+        pass
 
 
 

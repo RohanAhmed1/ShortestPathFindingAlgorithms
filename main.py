@@ -1,5 +1,3 @@
-from cProfile import run
-from tracemalloc import start
 import pygame
 from pygame.locals import *
 from colors import colors
@@ -34,26 +32,32 @@ while run:
         if event.type == QUIT:
                 run = False
         if pygame.mouse.get_pressed()[0]: #left button
-            position = pygame.mouse.get_pos()
-            grid.grid_update(position,'start')
+            position_start = pygame.mouse.get_pos()
+            grid.grid_update(position_start,'start')
         
-        if pygame.mouse.get_pressed()[2]: #left button
-            position = pygame.mouse.get_pos()
-            grid.grid_update(position,'goal')
+        if pygame.mouse.get_pressed()[2]: #right button
+            position_goal = pygame.mouse.get_pos()
+            grid.grid_update(position_goal,'goal')
         
-        if pygame.mouse.get_pressed()[1]: #left button
-            position = pygame.mouse.get_pos()
-            grid.grid_update(position,'barrier')
+        if pygame.mouse.get_pressed()[1]: #mid button
+            position_barrier = pygame.mouse.get_pos()
+            grid.grid_update(position_barrier,'barrier')
 
         # True when the keyboard give the input
         if event.type == KEYDOWN:
-            print('rohan')
-            # key define the which input.
-            if event.key == K_KP_ENTER:
+            
+            # key define the which input and K
+            if event.key == K_RETURN:
                 pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)
                 pygame.event.set_blocked(pygame.MOUSEMOTION)
                 pygame.event.set_blocked(pygame.MOUSEBUTTONUP)
                 pygame.event.set_blocked(pygame.MOUSEWHEEL)
+
+
+                grid.searching_algorithms("BFS", position_start, position_goal)
+
+
+                
                 
         
         
@@ -71,18 +75,6 @@ while run:
 
     pygame.display.update()
     pygame.time.Clock().tick(60)
-
-    def Algorithm(Grid, Start, Goal):
-        frontier  = PriorityQueue()
-        frontier.put((2,Start))
-        
-        if frontier.empty():
-            return "not found"
-        else:
-            if frontier.get()[1] == Goal:
-                return frontier.get()[1]
-            else:
-                pass
 
 
 
