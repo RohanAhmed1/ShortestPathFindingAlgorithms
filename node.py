@@ -10,7 +10,7 @@ class Node:
         self.width = width
         self.color = colors.white
         # in pygame screen
-        self.x = row * width
+        self.x= row * width
         self.y = col * width
 
     def get_pos(self):
@@ -49,18 +49,22 @@ class Node:
 
     def has_neighbours(self,grid, rows):
         # down
-        if self.x + 1>=0 and (self.x + 1)<rows and not (grid[self.x+1][self.y].is_barrier()):
-            self.neighbours.append([self.x+1, self.y])
+        if self.row + 1>=0 and (self.row + 1)<rows and not (grid[self.row+1][self.col].is_barrier()):
+            self.neighbours.append([self.row+1, self.col])
         # up
-        if self.x  -1>=0 and (self.x  -1)<rows and not (grid[self.x-1][self.y].is_barrier()):
-            self.neighbours.append([self.x-1, self.y] ) 
+        if self.row  -1>=0 and (self.row  -1)<rows and not (grid[self.row-1][self.col].is_barrier()):
+            self.neighbours.append([self.row-1, self.col] ) 
         #right
-        if self.y + 1>=0 and (self.y + 1)<rows and not (grid[self.x][self.y + 1].is_barrier()):
-            self.neighbours.append([self.x, self.y+1])
+        if self.col + 1>=0 and (self.col + 1)<rows and not (grid[self.row][self.col + 1].is_barrier()):
+            self.neighbours.append([self.row, self.col+1])
         #left
-        if self.y - 1>=0 and (self.y - 1)<rows and not (grid[self.x][self.y-1].is_barrier()):
-            self.neighbours.append([self.x, self.y-1])
+        if self.col - 1>=0 and (self.col - 1)<rows and not (grid[self.row][self.col-1].is_barrier()):
+            self.neighbours.append([self.row, self.col-1])
+
+    def __eq__(self, node) -> bool:
+        return self.get_pos() == node.get_pos()
         
+
 
 
 

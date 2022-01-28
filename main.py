@@ -12,6 +12,9 @@ rows = 50
 win = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Shortest Path Finding')
 
+#Algorithm
+
+
 
 #main
 grid = Grid(rows, screen_width)
@@ -44,12 +47,14 @@ while run:
 
         # True when the keyboard give the input
         if event.type == KEYDOWN:
+            print('rohan')
             # key define the which input.
             if event.key == K_KP_ENTER:
                 pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)
                 pygame.event.set_blocked(pygame.MOUSEMOTION)
                 pygame.event.set_blocked(pygame.MOUSEBUTTONUP)
                 pygame.event.set_blocked(pygame.MOUSEWHEEL)
+                
         
         
 
