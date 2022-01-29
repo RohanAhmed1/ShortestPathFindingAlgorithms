@@ -56,23 +56,7 @@ while run:
 
                 grid.searching_algorithms("BFS", position_start, position_goal)
 
-
-                
-                
-        
-        
-
-        
-
-
-
-
-
-
-    
-
-
-
+          
     pygame.display.update()
     pygame.time.Clock().tick(60)
 

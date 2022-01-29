@@ -50,19 +50,24 @@ class Node:
     def has_neighbours(self,grid, rows):
         # down
         if self.row + 1>=0 and (self.row + 1)<rows and not (grid[self.row+1][self.col].is_barrier()):
-            self.neighbours.append([self.row+1, self.col])
+            self.neighbours.append(grid[self.row+1][self.col])
         # up
         if self.row  -1>=0 and (self.row  -1)<rows and not (grid[self.row-1][self.col].is_barrier()):
-            self.neighbours.append([self.row-1, self.col] ) 
+            self.neighbours.append( grid[self.row-1][self.col] ) 
         #right
         if self.col + 1>=0 and (self.col + 1)<rows and not (grid[self.row][self.col + 1].is_barrier()):
-            self.neighbours.append([self.row, self.col+1])
+            self.neighbours.append(grid[self.row][self.col + 1])
         #left
         if self.col - 1>=0 and (self.col - 1)<rows and not (grid[self.row][self.col-1].is_barrier()):
-            self.neighbours.append([self.row, self.col-1])
+            self.neighbours.append(grid[self.row][self.col-1])
+        
+        return self.neighbours
 
     def __eq__(self, node) -> bool:
         return self.get_pos() == node.get_pos()
+
+    def __lt__(self, other):
+        return False
         
 
 

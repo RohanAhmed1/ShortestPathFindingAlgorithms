@@ -1,5 +1,6 @@
 
 from node import Node
+from Algorithms import BFS
 
 
 class Grid:
@@ -55,7 +56,15 @@ class Grid:
 
 
     def searching_algorithms(self, algorithm, start, goal):
-        pass
+        #for pixels value into the Grid location
+        start = (start[0] // self.gap_between(self.rows, self.width), start[1] // self.gap_between(self.rows, self.width))
+        goal = (goal[0] // self.gap_between(self.rows, self.width), goal[1] // self.gap_between(self.rows, self.width))
+        start  = self.grid[start[0]][start[1]]
+        goal  = self.grid[goal[0]][goal[1]]
+        print(start, goal)
+        if algorithm == "BFS":
+            bfs = BFS()
+            bfs.BFS_algorithm(self.grid, start, goal, self.rows)
 
 
 

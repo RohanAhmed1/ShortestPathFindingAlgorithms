@@ -2,9 +2,11 @@ from queue import PriorityQueue
 
 class BFS:
 
-    def BFS_algorithm(self, grid, start, goal):
+    def BFS_algorithm(self, grid, start, goal,rows):
+
+        # algorithm
         open_set = PriorityQueue()
-        heur = self.calc_heuristic(start, goal)
+        heur = self.cal_heuristic(start, goal)
         open_set.put([heur, start])
         closed_set = []
         came_from = []
@@ -17,14 +19,18 @@ class BFS:
             if node in closed_set:
                 continue
             came_from.append(item)
+            print(node, goal)
             if node == goal:
+                print(node)
                 return node, came_from
             closed_set.append(node)
-            for each in node.has_neighbours(grid):
+            node.make_closed()
+            for each in node.has_neighbours(grid,rows):
 
-                heur = self.calc_heuristic(each, goal)
+                heur = self.cal_heuristic(each, goal)
 
                 open_set.put([heur, each])
+                each.make_open()
 
         return "not found"
         
