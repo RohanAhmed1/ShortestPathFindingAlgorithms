@@ -1,8 +1,6 @@
 import pygame
 from pygame.locals import *
-from colors import colors
 from grid import Grid
-from queue import PriorityQueue
 
 pygame.init()
 screen_width, screen_height = 750, 750   # Resolution -> 1600, 900
@@ -56,9 +54,14 @@ while run:
 
                 grid.searching_algorithms("BFS", position_start, position_goal)
 
-          
+                
+
+  
     pygame.display.update()
     pygame.time.Clock().tick(60)
+
+
+
 
 
 

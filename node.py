@@ -22,19 +22,19 @@ class Node:
     def make_barrier(self):
         self.color = colors.black
     def make_open(self):
-        self.color = colors.silver
+        self.color = colors.gold
     def make_closed(self):
-        self.color = colors.gray
+        self.color = colors.aqua
     def is_start(self):
         return self.color == colors.red
     def is_goal(self):
         return self.color == colors.blue
     def is_barrier(self):
-        self.color == colors.black
+        return self.color == colors.black
     def is_open(self):
-        self.color == colors.silver
+        return self.color == colors.gold
     def is_closed(self):
-        self.color == colors.gray
+        return self.color == colors.aqua
     def reset(self):
         self.color = colors.white
     def draw_node(self, win):

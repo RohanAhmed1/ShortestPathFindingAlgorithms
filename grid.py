@@ -31,8 +31,10 @@ class Grid:
     
     
     def grid_update(self, position, do):
+        #position in grid
         row= position[0] // self.gap_between(self.rows, self.width)
         col= position[1] // self.gap_between(self.rows, self.width)
+
         node  = self.grid[row][col]
  
         if not(node.is_start()) and not self.start and do =="start":        
@@ -61,7 +63,6 @@ class Grid:
         goal = (goal[0] // self.gap_between(self.rows, self.width), goal[1] // self.gap_between(self.rows, self.width))
         start  = self.grid[start[0]][start[1]]
         goal  = self.grid[goal[0]][goal[1]]
-        print(start, goal)
         if algorithm == "BFS":
             bfs = BFS()
             bfs.BFS_algorithm(self.grid, start, goal, self.rows)
