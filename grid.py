@@ -57,7 +57,7 @@ class Grid:
         return width // rows  # how many columns in the screen width
 
 
-    def searching_algorithms(self, algorithm, start, goal):
+    def searching_algorithms(self, algorithm, start, goal, grid, win, pygame):
         #for pixels value into the Grid location
         start = (start[0] // self.gap_between(self.rows, self.width), start[1] // self.gap_between(self.rows, self.width))
         goal = (goal[0] // self.gap_between(self.rows, self.width), goal[1] // self.gap_between(self.rows, self.width))
@@ -65,7 +65,7 @@ class Grid:
         goal  = self.grid[goal[0]][goal[1]]
         if algorithm == "BFS":
             bfs = BFS()
-            bfs.BFS_algorithm(self.grid, start, goal, self.rows)
+            bfs.BFS_algorithm(self.grid, start, goal, self.rows, grid, win, pygame)
 
 
 

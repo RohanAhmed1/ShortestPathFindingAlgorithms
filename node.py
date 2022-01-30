@@ -3,6 +3,8 @@ from colors import colors
 
 
 class Node:
+
+    
     def __init__(self, row, col, width):
         self.neighbours = []
         self.row = row
@@ -12,6 +14,8 @@ class Node:
         # in pygame screen
         self.x= row * width
         self.y = col * width
+        self.parent  = None
+
 
     def get_pos(self):
         return self.row, self.col
@@ -25,6 +29,8 @@ class Node:
         self.color = colors.gold
     def make_closed(self):
         self.color = colors.aqua
+    def make_path(self):
+        self.color = colors.yellow
     def is_start(self):
         return self.color == colors.red
     def is_goal(self):
@@ -43,6 +49,11 @@ class Node:
         #for black borders around the Node
         pygame.draw.rect(win, colors.black, (self.x, self.y, self.width, self.width),1)
     
+    def set_parent(self, node):
+        self.parent = node
+
+    def get_parent(self):
+        return self.parent
 
 
         

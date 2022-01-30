@@ -52,7 +52,8 @@ while run:
                 pygame.event.set_blocked(pygame.MOUSEWHEEL)
 
 
-                grid.searching_algorithms("BFS", position_start, position_goal)
+                grid.searching_algorithms("BFS", position_start, position_goal, grid, win, pygame.display.update)
+                
 
                 
 
