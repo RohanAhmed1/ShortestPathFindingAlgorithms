@@ -8,7 +8,8 @@ class colors:
         gold = (255,215,0)
         aqua = (0,255,255)
         yellow = (255,255,0)
-        
+        green = (0,128,0)
+        teal = (0,128,128)
 
 
     

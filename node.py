@@ -30,7 +30,7 @@ class Node:
     def make_closed(self):
         self.color = colors.aqua
     def make_path(self):
-        self.color = colors.yellow
+        self.color = colors.teal
     def is_start(self):
         return self.color == colors.red
     def is_goal(self):
@@ -43,6 +43,7 @@ class Node:
         return self.color == colors.aqua
     def reset(self):
         self.color = colors.white
+        self.parent = None
     def draw_node(self, win):
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width,self.width))
 

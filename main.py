@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 from grid import Grid
+from sys import exit
 
 pygame.init()
 screen_width, screen_height = 750, 750   # Resolution -> 1600, 900
@@ -8,7 +9,7 @@ rows = 50
 win = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Shortest Path Finding')
 
-#Algorithm
+
 
 
 
@@ -43,17 +44,24 @@ while run:
 
         # True when the keyboard give the input
         if event.type == KEYDOWN:
+            pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)
+            pygame.event.set_blocked(pygame.MOUSEMOTION)
+            pygame.event.set_blocked(pygame.MOUSEBUTTONUP)
+            pygame.event.set_blocked(pygame.MOUSEWHEEL)
             
             # key define the which input and K
-            if event.key == K_RETURN:
-                pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)
-                pygame.event.set_blocked(pygame.MOUSEMOTION)
-                pygame.event.set_blocked(pygame.MOUSEBUTTONUP)
-                pygame.event.set_blocked(pygame.MOUSEWHEEL)
-
-
+            if event.key == K_b:
                 grid.searching_algorithms("BFS", position_start, position_goal, grid, win, pygame.display.update)
-                
+            elif event.key == K_d:
+                grid.searching_algorithms("DFS", position_start, position_goal, grid, win, pygame.display.update)
+            elif event.key == K_r:
+                grid.searching_algorithms("BrFS", position_start, position_goal, grid, win, pygame.display
+                .update)
+
+            elif event.key == K_RETURN:
+                grid = Grid(rows, screen_width)
+                grid.make_grid()
+                print(pygame.event.set_allowed(None))
 
                 
 

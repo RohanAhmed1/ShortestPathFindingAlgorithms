@@ -1,6 +1,6 @@
 
 from node import Node
-from Algorithms import BFS
+from Algorithms import BFS, DFS, BrFS
 
 
 class Grid:
@@ -37,7 +37,7 @@ class Grid:
 
         node  = self.grid[row][col]
  
-        if not(node.is_start()) and not self.start and do =="start":        
+        if not(node.is_start()) and not self.start and do =="start":      
             self.grid[row][col].make_start()
             self.start = True
         if not(node.is_goal()) and not self.goal and do =="goal":
@@ -66,6 +66,13 @@ class Grid:
         if algorithm == "BFS":
             bfs = BFS()
             bfs.BFS_algorithm(self.grid, start, goal, self.rows, grid, win, pygame)
+        elif algorithm == "DFS":
+            bfs = DFS()
+            bfs.DFS_algorithm(self.grid, start, goal, self.rows, grid, win, pygame)
+        elif algorithm == "BrFS":
+            bfs = BrFS()
+            bfs.BrFS_algorithm(self.grid, start, goal, self.rows, grid, win, pygame)
+
 
 
 
