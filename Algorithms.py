@@ -34,6 +34,13 @@ class BFS(DrawUpdate):
                 continue
             if node == goal:
                 self.draw_goal_path(node, grid_win, win, pygame)
+                # for making
+                start.make_start()
+                goal.make_goal()
+                # update the screen
+                grid_win.draw_grid(win)
+                sleep(0.01)
+                pygame()
                 return
             closed_set.append(node)
             
@@ -49,9 +56,12 @@ class BFS(DrawUpdate):
                 if not each.is_closed():
                     each.set_parent(node)
                     each.make_open()
+                    #update the screen
                     grid_win.draw_grid(win)
                     sleep(0.01)
                     pygame()
+
+        
 
 
 
@@ -92,6 +102,13 @@ class BrFS(DrawUpdate):
                 continue
             if node == goal:
                 self.draw_goal_path(node, grid_win, win, pygame)
+                # for making their coloured again
+                start.make_start()
+                goal.make_goal()
+                # update the screen
+                grid_win.draw_grid(win)
+                sleep(0.01)
+                pygame()
                 return
             closed_set.append(node)
             
@@ -109,6 +126,9 @@ class BrFS(DrawUpdate):
                     grid_win.draw_grid(win)
                     sleep(0.01)
                     pygame()
+
+        
+        
 
 
 
@@ -134,6 +154,7 @@ class DFS(DrawUpdate):
                 continue
             if node == goal:
                 self.draw_goal_path(node, grid_win, win, pygame)
+                # for making goal and start node again coloured
                 return
             closed_set.append(node)
             
@@ -152,4 +173,4 @@ class DFS(DrawUpdate):
                     sleep(0.01)
                     pygame()
 
-                    
+        
