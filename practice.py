@@ -64,3 +64,111 @@
 #                     each.make_open()
 
 #         return "not found"
+
+
+# from queue import PriorityQueue
+# from time import sleep
+# M = []
+# path_cost = 1
+# #make matrix
+# for i in range(5):
+#     M.append([])
+#     for j in range(5):
+#         M[i].append((i,j))
+
+
+# # print matrix
+# for i in M:
+#     for j in i:
+#         print(j , end = ' ')
+#     print()
+# print()
+# print()
+
+
+# def calc_heuristic(start, goal):
+#     return abs(goal[0]-start[0])+abs(goal[1]-start[1])
+# def neighbours(start):
+#     neighbours = []
+#     #up
+#     if start[0] + 1>=0 and (start[0] + 1)<5:
+#         neighbours.append([start[0]+1, start[1]])
+#     #down
+#     if start[0]  -1>=0 and (start[0]  -1)<5:
+#         neighbours.append([start[0]-1, start[1]] )
+#     #right
+#     if start[1] + 1>=0 and (start[1] + 1)<5:
+#         neighbours.append([start[0], start[1]+1])
+#     #left
+#     if start[1] - 1>=0 and (start[1] - 1)<5:
+#         neighbours.append([start[0], start[1]-1])
+
+#     return neighbours
+
+
+
+# def Astar_Algorithm(grid, start, goal):
+#     open_set = PriorityQueue()
+#     func = path_cost + calc_heuristic(start, goal)
+#     open_set.put([func, start])
+#     closed_set = []
+#     came_from = []
+    
+
+#     while open_set is not open_set.empty():
+#         item = open_set.get()
+#         if item[1] in closed_set:
+#             continue
+#         came_from.append(item)
+#         if item[1] == goal:
+#             return item[1], came_from, open_set
+#         closed_set.append(item[1])
+#         for each in neighbours(item[1]):
+            
+#             func = path_cost + calc_heuristic(each, goal)
+            
+#             open_set.put([func, each])
+            
+
+
+
+
+# print(Astar_Algorithm(M, [0,0], [4,0] )[0])
+
+
+# def BFS_Algorithm(grid, start, goal):
+#     open_set = PriorityQueue()
+#     func = calc_heuristic(start, goal)
+#     open_set.put([func, start])
+#     closed_set = []
+#     came_from = []
+    
+
+#     while open_set is not open_set.empty():
+#         item = open_set.get()
+#         print(item)
+#         if item[1] in closed_set:
+#             continue
+#         came_from.append(item)
+#         if item[1] == goal:
+#             return item[1], came_from, open_set
+#         closed_set.append(item[1])
+#         for each in neighbours(item[1]):
+            
+#             func = calc_heuristic(each, goal)
+            
+#             open_set.put([func, each])
+            
+
+
+
+
+# print(BFS_Algorithm(M, [0,0], [3,3] )[0])
+
+
+
+
+
+
+
+

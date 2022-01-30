@@ -7,13 +7,18 @@ class Node:
     
     def __init__(self, row, col, width):
         self.neighbours = []
+
+        # position in grid
         self.row = row
         self.col = col
         self.width = width
         self.color = colors.white
-        # in pygame screen
+
+        # position in screen
         self.x= row * width
         self.y = col * width
+
+        # parent of this node
         self.parent  = None
 
 
@@ -78,6 +83,7 @@ class Node:
     def __eq__(self, node) -> bool:
         return self.get_pos() == node.get_pos()
 
+    # for handling the error of the Priority Comparision in priority Queue
     def __lt__(self, other):
         return False
         

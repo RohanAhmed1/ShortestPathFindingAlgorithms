@@ -1,23 +1,25 @@
 import pygame
 from pygame.locals import *
 from grid import Grid
-from sys import exit
 
+
+# initialize the pygame and set screen 
 pygame.init()
 screen_width, screen_height = 750, 750   # Resolution -> 1600, 900
-rows = 50
 win = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Shortest Path Finding')
 
 
-
-
-
 #main
+
+# rows and column in screen
+rows = 50
+
+# grid
 grid = Grid(rows, screen_width)
 grid.make_grid()
 
-
+# screen in loop
 run = True
 
 
@@ -44,30 +46,42 @@ while run:
 
         # True when the keyboard give the input
         if event.type == KEYDOWN:
+
+            # after setting the goal , barriers, and start, mouse inputs blocked
             pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)
             pygame.event.set_blocked(pygame.MOUSEMOTION)
             pygame.event.set_blocked(pygame.MOUSEBUTTONUP)
             pygame.event.set_blocked(pygame.MOUSEWHEEL)
+
             
-            # key define the which input and K
-            if event.key == K_b:
+            # key define the which input of keyboard
+
+            if event.key == K_b:  # B button
                 grid.searching_algorithms("BFS", position_start, position_goal, grid, win, pygame.display.update)
-            elif event.key == K_d:
+            elif event.key == K_d: # D button
                 grid.searching_algorithms("DFS", position_start, position_goal, grid, win, pygame.display.update)
-            elif event.key == K_r:
+            elif event.key == K_r: # R button
                 grid.searching_algorithms("BrFS", position_start, position_goal, grid, win, pygame.display
                 .update)
 
+
+            # for resetting the game
             elif event.key == K_RETURN:
+                # make grid again, all values will be reset
                 grid = Grid(rows, screen_width)
                 grid.make_grid()
+
+                #it allowed all the events ( also those events which are blocked )
                 print(pygame.event.set_allowed(None))
 
                 
 
-  
+    # for updating the screen 
     pygame.display.update()
     pygame.time.Clock().tick(60)
+
+
+pygame.exi()
 
 
 

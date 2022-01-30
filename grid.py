@@ -4,6 +4,7 @@ from Algorithms import BFS, DFS, BrFS
 
 
 class Grid:
+    # take those inputs in __init__  which are must to create object
     def __init__(self, rows, width):
         self.grid = []
         self.rows = rows
@@ -35,6 +36,7 @@ class Grid:
         row= position[0] // self.gap_between(self.rows, self.width)
         col= position[1] // self.gap_between(self.rows, self.width)
 
+        # node in grid
         node  = self.grid[row][col]
  
         if not(node.is_start()) and not self.start and do =="start":      
@@ -50,19 +52,21 @@ class Grid:
 
 
 
-
-
-
+    # for calculating how many columns in the screen width
     def gap_between(self, rows, width):
-        return width // rows  # how many columns in the screen width
+        return width // rows  
 
 
     def searching_algorithms(self, algorithm, start, goal, grid, win, pygame):
         #for pixels value into the Grid location
         start = (start[0] // self.gap_between(self.rows, self.width), start[1] // self.gap_between(self.rows, self.width))
         goal = (goal[0] // self.gap_between(self.rows, self.width), goal[1] // self.gap_between(self.rows, self.width))
+
+        # node in grid
         start  = self.grid[start[0]][start[1]]
         goal  = self.grid[goal[0]][goal[1]]
+
+        # choose algorithm
         if algorithm == "BFS":
             bfs = BFS()
             bfs.BFS_algorithm(self.grid, start, goal, self.rows, grid, win, pygame)

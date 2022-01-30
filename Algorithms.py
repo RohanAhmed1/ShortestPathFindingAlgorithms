@@ -1,7 +1,8 @@
-from time import sleep
+# built-in Queues
 from queue import Queue, PriorityQueue, LifoQueue
+from time import sleep
 
-
+# common method for all Algorithms
 class DrawUpdate:
 
     def draw_goal_path(self,node, grid_win,win, pygame):
@@ -34,17 +35,24 @@ class BFS(DrawUpdate):
                 continue
             if node == goal:
                 self.draw_goal_path(node, grid_win, win, pygame)
-                # for making
+
+                # for making start and goal node coloures again
                 start.make_start()
                 goal.make_goal()
+
                 # update the screen
                 grid_win.draw_grid(win)
                 sleep(0.01)
                 pygame()
+
+                # algirthm complete
                 return
+        
             closed_set.append(node)
             
             node.make_closed()
+
+            #update the screen
             grid_win.draw_grid(win)
             sleep(0.02)
             pygame()
@@ -56,6 +64,7 @@ class BFS(DrawUpdate):
                 if not each.is_closed():
                     each.set_parent(node)
                     each.make_open()
+
                     #update the screen
                     grid_win.draw_grid(win)
                     sleep(0.01)
@@ -72,7 +81,7 @@ class BFS(DrawUpdate):
 
         return "not found"
         
-
+    # distance between two points
     def cal_heuristic(self, start, goal):
         start_row, start_col = start.get_pos()
         goal_row, goal_col = goal.get_pos()
@@ -102,9 +111,10 @@ class BrFS(DrawUpdate):
                 continue
             if node == goal:
                 self.draw_goal_path(node, grid_win, win, pygame)
-                # for making their coloured again
+                # for making start and goal coloured again
                 start.make_start()
                 goal.make_goal()
+
                 # update the screen
                 grid_win.draw_grid(win)
                 sleep(0.01)
@@ -113,6 +123,8 @@ class BrFS(DrawUpdate):
             closed_set.append(node)
             
             node.make_closed()
+
+            #update the screen
             grid_win.draw_grid(win)
             sleep(0.02)
             pygame()
@@ -123,6 +135,8 @@ class BrFS(DrawUpdate):
                 if not each.is_closed():
                     each.set_parent(node)
                     each.make_open()
+
+                    #update the screen
                     grid_win.draw_grid(win)
                     sleep(0.01)
                     pygame()
@@ -154,7 +168,15 @@ class DFS(DrawUpdate):
                 continue
             if node == goal:
                 self.draw_goal_path(node, grid_win, win, pygame)
-                # for making goal and start node again coloured
+                # for making start and goal coloured again
+                start.make_start()
+                goal.make_goal()
+
+                # update the screen
+                grid_win.draw_grid(win)
+                sleep(0.01)
+                pygame()
+                return
                 return
             closed_set.append(node)
             
@@ -169,6 +191,8 @@ class DFS(DrawUpdate):
                 if not each.is_closed():
                     each.set_parent(node)
                     each.make_open()
+
+                    # update the screen
                     grid_win.draw_grid(win)
                     sleep(0.01)
                     pygame()
