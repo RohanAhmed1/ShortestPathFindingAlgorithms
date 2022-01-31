@@ -7,7 +7,7 @@ from grid import Grid
 pygame.init()
 screen_width, screen_height = 750, 750   # Resolution -> 1600, 900
 win = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption('Shortest Path Finding')
+pygame.display.set_caption('Path Finding Algorithms Visualizer')
 
 
 #main
@@ -35,6 +35,7 @@ while run:
         if pygame.mouse.get_pressed()[0]: #left button
             position_start = pygame.mouse.get_pos()
             grid.grid_update(position_start,'start')
+            
         
         if pygame.mouse.get_pressed()[2]: #right button
             position_goal = pygame.mouse.get_pos()
@@ -57,12 +58,11 @@ while run:
             # key define the which input of keyboard
 
             if event.key == K_b:  # B button
-                grid.searching_algorithms("BFS", position_start, position_goal, grid, win, pygame.display.update)
+                grid.searching_algorithms("BFS", grid.start_node, grid.goal_node, grid, win, pygame.display.update)
             elif event.key == K_d: # D button
-                grid.searching_algorithms("DFS", position_start, position_goal, grid, win, pygame.display.update)
+                grid.searching_algorithms("DFS", grid.start_node, grid.goal_node, grid, win, pygame.display.update)
             elif event.key == K_r: # R button
-                grid.searching_algorithms("BrFS", position_start, position_goal, grid, win, pygame.display
-                .update)
+                grid.searching_algorithms("BrFS", grid.start_node, grid.goal_node, grid, win, pygame.display.update)
 
 
             # for resetting the game
@@ -72,7 +72,7 @@ while run:
                 grid.make_grid()
 
                 #it allowed all the events ( also those events which are blocked )
-                print(pygame.event.set_allowed(None))
+                pygame.event.set_allowed(None)
 
                 
 
@@ -81,7 +81,6 @@ while run:
     pygame.time.Clock().tick(60)
 
 
-pygame.exi()
 
 
 

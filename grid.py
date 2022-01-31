@@ -10,6 +10,10 @@ class Grid:
         self.rows = rows
         self.width = width
 
+        #start_node and goal_node
+        self.start_node = False
+        self.goal_node = False
+
         #its for the not making start and goal node again
         self.start  = False
         self.goal = False
@@ -39,14 +43,16 @@ class Grid:
         # node in grid
         node  = self.grid[row][col]
  
-        if not(node.is_start()) and not self.start and do =="start":      
-            self.grid[row][col].make_start()
+        if not(node.is_start()) and not self.start and do =="start":    
+            node.make_start()
+            self.start_node = node
             self.start = True
         if not(node.is_goal()) and not self.goal and do =="goal":
-            self.grid[row][col].make_goal()
+            node.make_goal()
+            self.goal_node = node
             self.goal = True
         if not(node.is_barrier()) and not(node.is_start()) and not(node.is_goal()) and do =="barrier":
-            self.grid[row][col].make_barrier()
+            node.make_barrier()
         
 
 
@@ -59,12 +65,10 @@ class Grid:
 
     def searching_algorithms(self, algorithm, start, goal, grid, win, pygame):
         #for pixels value into the Grid location
-        start = (start[0] // self.gap_between(self.rows, self.width), start[1] // self.gap_between(self.rows, self.width))
-        goal = (goal[0] // self.gap_between(self.rows, self.width), goal[1] // self.gap_between(self.rows, self.width))
 
         # node in grid
-        start  = self.grid[start[0]][start[1]]
-        goal  = self.grid[goal[0]][goal[1]]
+        start  = self.grid[start.get_pos()[0]][start.get_pos()[1]]
+        goal  = self.grid[goal.get_pos()[0]][goal.get_pos()[1]]
 
         # choose algorithm
         if algorithm == "BFS":
