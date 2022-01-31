@@ -10,13 +10,10 @@ class Grid:
         self.rows = rows
         self.width = width
 
-        #start_node and goal_node
+        # set start_node and goal_node
         self.start_node = False
         self.goal_node = False
 
-        #its for the not making start and goal node again
-        self.start  = False
-        self.goal = False
 
     
     def make_grid(self):
@@ -36,6 +33,7 @@ class Grid:
     
     
     def grid_update(self, position, do):
+
         #position in grid
         row= position[0] // self.gap_between(self.rows, self.width)
         col= position[1] // self.gap_between(self.rows, self.width)
@@ -43,14 +41,12 @@ class Grid:
         # node in grid
         node  = self.grid[row][col]
  
-        if not(node.is_start()) and not self.start and do =="start":    
+        if not(node.is_start()) and not self.start_node and do =="start":    
             node.make_start()
             self.start_node = node
-            self.start = True
-        if not(node.is_goal()) and not self.goal and do =="goal":
+        if not(node.is_goal()) and not self.goal_node and do =="goal":
             node.make_goal()
             self.goal_node = node
-            self.goal = True
         if not(node.is_barrier()) and not(node.is_start()) and not(node.is_goal()) and do =="barrier":
             node.make_barrier()
         
@@ -58,7 +54,7 @@ class Grid:
 
 
 
-    # for calculating how many columns in the screen width
+    # for calculating how many columns in the screen width or rows in the height
     def gap_between(self, rows, width):
         return width // rows  
 

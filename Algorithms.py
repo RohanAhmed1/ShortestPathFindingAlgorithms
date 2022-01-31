@@ -5,8 +5,8 @@ from time import sleep
 # common method for all Algorithms
 class DrawUpdate:
 
-    def draw_goal_path(self,node, grid_win,win, pygame):
-        while node.get_parent() is not None and node.is_closed:
+    def draw_goal_path(self,node, grid_win, win, pygame):
+        while node.get_parent() is not None:
             node.make_path()
             #update the screen
             grid_win.draw_grid(win)

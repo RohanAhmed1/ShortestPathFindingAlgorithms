@@ -12,7 +12,7 @@ pygame.display.set_caption('Path Finding Algorithms Visualizer')
 
 #main
 
-# rows and column in screen
+# rows and column in screen 
 rows = 50
 
 # grid
@@ -45,40 +45,50 @@ while run:
             position_barrier = pygame.mouse.get_pos()
             grid.grid_update(position_barrier,'barrier')
 
+        
+        #only allowed keyboards when the start and goal node defined
+        if grid.start_node and grid.goal_node:
+
+
         # True when the keyboard give the input
-        if event.type == KEYDOWN:
+            if event.type == KEYDOWN:
 
-            # after setting the goal , barriers, and start, mouse inputs blocked
-            pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)
-            pygame.event.set_blocked(pygame.MOUSEMOTION)
-            pygame.event.set_blocked(pygame.MOUSEBUTTONUP)
-            pygame.event.set_blocked(pygame.MOUSEWHEEL)
+                # after setting the goal , barriers, and start, mouse inputs blocked
+                pygame.event.set_blocked(pygame.MOUSEBUTTONDOWN)
+                pygame.event.set_blocked(pygame.MOUSEMOTION)
+                pygame.event.set_blocked(pygame.MOUSEBUTTONUP)
+                pygame.event.set_blocked(pygame.MOUSEWHEEL)
 
-            
-            # key define the which input of keyboard
+                
+                # key define the which input of keyboard
+                if event.key == K_b:  # B button
+                    grid.searching_algorithms("BFS", grid.start_node, grid.goal_node, grid, win, pygame.display.update)
+                elif event.key == K_d: # D button
+                    grid.searching_algorithms("DFS", grid.start_node, grid.goal_node, grid, win, pygame.display.update)
+                elif event.key == K_r: # R button
+                    grid.searching_algorithms("BrFS", grid.start_node, grid.goal_node, grid, win, pygame.display.update)
 
-            if event.key == K_b:  # B button
-                grid.searching_algorithms("BFS", grid.start_node, grid.goal_node, grid, win, pygame.display.update)
-            elif event.key == K_d: # D button
-                grid.searching_algorithms("DFS", grid.start_node, grid.goal_node, grid, win, pygame.display.update)
-            elif event.key == K_r: # R button
-                grid.searching_algorithms("BrFS", grid.start_node, grid.goal_node, grid, win, pygame.display.update)
 
+                # for resetting the game
+                elif event.key == K_RETURN:   # K_RETURN is for the enter button in the keyboard
 
-            # for resetting the game
-            elif event.key == K_RETURN:
-                # make grid again, all values will be reset
-                grid = Grid(rows, screen_width)
-                grid.make_grid()
+                    # make grid again, all values will be reset
+                    grid = Grid(rows, screen_width)
+                    grid.make_grid()
 
-                #it allowed all the events ( also those events which are blocked )
-                pygame.event.set_allowed(None)
+                    #it allowed all the events ( also those events which are blocked )
+                    pygame.event.set_allowed(None)
 
                 
 
     # for updating the screen 
     pygame.display.update()
     pygame.time.Clock().tick(60)
+
+
+
+# exit from the pygame
+pygame.quit()
 
 
 

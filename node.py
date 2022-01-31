@@ -1,5 +1,5 @@
 import pygame
-from colors import colors
+from colors import Colors
 
 
 class Node:
@@ -11,12 +11,15 @@ class Node:
         # position in grid
         self.row = row
         self.col = col
-        self.width = width
-        self.color = colors.white
+
+        # initial color
+        self.color = Colors.white
 
         # position in screen
         self.x= row * width
         self.y = col * width
+        # height and height of the node
+        self.width = width
 
         # parent of this node
         self.parent  = None
@@ -25,35 +28,35 @@ class Node:
     def get_pos(self):
         return self.row, self.col
     def make_start(self):
-        self.color = colors.red
+        self.color = Colors.red
     def make_goal(self):
-        self.color = colors.blue
+        self.color = Colors.blue
     def make_barrier(self):
-        self.color = colors.black
+        self.color = Colors.black
     def make_open(self):
-        self.color = colors.gold
+        self.color = Colors.gold
     def make_closed(self):
-        self.color = colors.aqua
+        self.color = Colors.aqua
     def make_path(self):
-        self.color = colors.teal
+        self.color = Colors.teal
     def is_start(self):
-        return self.color == colors.red
+        return self.color == Colors.red
     def is_goal(self):
-        return self.color == colors.blue
+        return self.color == Colors.blue
     def is_barrier(self):
-        return self.color == colors.black
+        return self.color == Colors.black
     def is_open(self):
-        return self.color == colors.gold
+        return self.color == Colors.gold
     def is_closed(self):
-        return self.color == colors.aqua
+        return self.color == Colors.aqua
     def reset(self):
-        self.color = colors.white
+        self.color = Colors.white
         self.parent = None
     def draw_node(self, win):
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width,self.width))
 
         #for black borders around the Node
-        pygame.draw.rect(win, colors.black, (self.x, self.y, self.width, self.width),1)
+        pygame.draw.rect(win, Colors.black, (self.x, self.y, self.width, self.width),1)
     
     def set_parent(self, node):
         self.parent = node
@@ -62,8 +65,8 @@ class Node:
         return self.parent
 
 
-        
 
+    # (5, 5) -> {'right' : (5,6), "left": (5,4), "up" : (4,5),"down" : (6,5)} ]
     def has_neighbours(self,grid, rows):
         # down
         if self.row + 1>=0 and (self.row + 1)<rows and not (grid[self.row+1][self.col].is_barrier()):
